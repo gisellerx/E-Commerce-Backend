@@ -7,7 +7,7 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 router.get('/', async(req, res) => {
   try {
     const id = req.params.id
-    const productData = await Product.findAll(id,{
+    const productData = await Product.findAll(id, {
       include: [{ model: Category }, { model: Tag }],
     })
     res.status(200).json(productData)
@@ -41,10 +41,10 @@ router.get('/:id', async(req, res) => {
 router.post('/', (req, res) => {
   /* req.body should look like this...
     {
-      "product_name": "Basketball",
-      "price": 200.00,
-      "stock": 3,
-      "tagIds": [1, 2, 3, 4]
+      product_name: "Basketball",
+      price: 200.00,
+      stock: 3,
+      tagIds: [1, 2, 3, 4]
     }
   */
   Product.create(req.body)
